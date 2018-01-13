@@ -1,28 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-import Animation from "./Animation"
+import Layers from "./Layers"
+import Grid from "./Grid"
 
-const Timeline = () => (
-  <TimelineStyled>
-    <Layer>
-      <Animation width={30}/>
-      <Animation width={10} delay={10}/>
-    </Layer>
-    <Layer>
-      <Animation width={40}/>
-    </Layer>    
-  </TimelineStyled>
+const Timeline = ({layers, times, totalTime}) => (
+  <Container>
+    <Grid times={times}/>
+    <TimelineStyled>
+      <Layers layers={layers} totalTime={totalTime}/>
+    </TimelineStyled>
+  </Container>
 );
 
-const TimelineStyled = styled.div`
-  background: #eee;
-  padding: 20px 0;
+const Container = styled.div`
+  position: relative;
 `;
 
-const Layer = styled.div`
-  display: flex;
-  padding: 10px 0;
+const TimelineStyled = styled.div`
+  background: #f9f9f9;
+  padding: 20px 0;
 `;
 
 export default Timeline;
