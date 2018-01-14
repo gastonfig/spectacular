@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+
+import Entry from './components/Entry';
 import Timeline from './components/Timeline';
 import TimeRuler from './components/TimeRuler';
 
@@ -14,12 +16,39 @@ class App extends Component {
       times: []
     };
 
+    this.addLayer = this.addLayer.bind(this);
     this.getTimes = this.getTimes.bind(this);
+    this.removeLayer = this.removeLayer.bind(this);
   }
 
   componentWillMount() {
     this.getTimes();
   }
+
+  addLayer(newLayer) {
+    const { timelineData } = this.state;
+    const layers = timelineData.layers;
+    const newLayersObj = {"layers": [...layers, newLayer]};
+    const newTimelineData = Object.assign(this.state.timelineData, newLayersObj);
+
+    this.setState({timelineData: newTimelineData});
+  }
+
+  // Remove layer
+  removeLayer(layerIndex) {
+    const { timelineData } = this.state;
+    const newLayers = [...timelineData.layers];
+    newLayers.splice(layerIndex, 1);
+    const newLayersObj = {"layers": newLayers};
+    const newTimelineData = Object.assign(this.state.timelineData, newLayersObj);
+
+    this.setState({timelineData: newTimelineData});
+  }
+  
+  // Update layer
+  // uddateLayer({layer}) {
+  //  ...
+  // }
 
   getTimes() {
     const scaleLength = timelineData.totalTime;
@@ -38,8 +67,10 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Entry addLayer={this.addLayer}/>        
         <Timeline
           layers={timelineData.layers}
+          removeLayer={this.removeLayer}
           times={times}
           totalTime={timelineData.totalTime}
         />

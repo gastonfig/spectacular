@@ -4,11 +4,11 @@ import styled from "styled-components";
 import Layers from "./Layers"
 import Grid from "./Grid"
 
-const Timeline = ({layers, times, totalTime}) => (
+const Timeline = ({layers, removeLayer, times, totalTime}) => (
   <Container>
     <Grid times={times}/>
     <TimelineStyled>
-      <Layers layers={layers} totalTime={totalTime}/>
+      <Layers layers={layers} removeLayer={removeLayer} totalTime={totalTime}/>
     </TimelineStyled>
   </Container>
 );
