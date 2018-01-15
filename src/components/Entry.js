@@ -1,20 +1,38 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 
-class Entry extends React.Component {
+import Input from './form/Input';
+import AnimationFieldset from './AnimationFieldset';
+
+class Entry extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      layerName: '',
-      layerDuration: '',
-      layerDelay: '',
-      layerStartVal: '',
-      layerEndVal: '',
-      layerEasing: '',
+      name: '',
+      animations: [{}],
     }
 
+    this.addAnimation = this.addAnimation.bind(this);
+    this.addAnotherAnimation = this.addAnotherAnimation.bind(this);
+    this.handleAddLayer = this.handleAddLayer.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  addAnimation(animationData, animationIndex = 0) {
+    const animations = [...this.state.animations];
+    animations[animationIndex] = animationData;
+    this.setState({ animations });
+  }
+
+  addAnotherAnimation() {
+    const animations = [...this.state.animations, {}];
+    this.setState({ animations });
+  }
+
+  handleAddLayer() {
+    this.props.addLayer(this.state);
+    this.props.toggleEntry();
   }
 
   handleInputChange(event) {
@@ -27,93 +45,29 @@ class Entry extends React.Component {
     });
   }
 
-  getLayerObj() {
-    const {
-      layerName,
-      layerDuration,
-      layerDelay,
-      layerStartVal,
-      layerEndVal,
-      layerEasing,
-    } = this.state;
-
-    const newLayer = {
-      "name": layerName,
-      "animations": [
-        {
-          "duration": layerDuration,
-          "delay": layerDelay,
-          "startValue": layerStartVal,
-          "endValue": layerEndVal,
-          "easing": layerEasing
-        }
-      ]
-    };
-    
-    return newLayer;
-  }
-  
   render() {
     return (
       <EntryForm>
         New Layer
         <Input
           label="Name"
-          name="layerName"
-          value={this.state.layerName}
+          name="name"
+          value={this.state.name}
           onChange={this.handleInputChange}
+          baba={'elbaba'}
         />
-        Animations
-        <Input
-          label="Duration"
-          name="layerDuration"
-          value={this.state.layerDuration}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          label="Delay"
-          name="layerDelay"
-          value={this.state.layerDelay}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          label="Start value"
-          name="layerStartVal"
-          value={this.state.layerStartVal}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          label="End value"
-          name="layerEndVal"
-          value={this.state.layerEndVal}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          label="Easing"
-          name="layerEasing"
-          value={this.state.layerEasing}
-          onChange={this.handleInputChange}
-        />
-        <button onClick={() => this.props.addLayer(this.getLayerObj())}>Done</button>
+        Animations        
+        {
+          this.state.animations.map((animation, index) => (
+            <AnimationFieldset addAnimation={this.addAnimation} animationIndex={index} key={index}/>
+          ))
+        } 
+        <button onClick={this.addAnotherAnimation}>+</button>
+        <button onClick={this.handleAddLayer}>Done</button>
       </EntryForm>
     )
   }
 };
-
-const Input = ({label, name, onChange, value}) => (
-  <Label>
-    {label}:
-    <input
-      name={name}
-      type="text"
-      value={value}
-      onChange={onChange} />
-  </Label>
-);
-
-const Label = styled.label`
-  display: block;
-`;
 
 const EntryForm = styled.div`
 `;

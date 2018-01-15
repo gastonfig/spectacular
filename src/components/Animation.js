@@ -6,8 +6,8 @@ const Animation = ({animation, delay, name, width}) => (
     <AnimationName>{name}</AnimationName>
     <AnimationStyled />
     <Values>
-      <span>{animation.startValue}</span>
-      <span>{animation.endValue}</span>
+      <span>{ animation.startValue }</span>
+      <span>{ animation.endValue }</span>
     </Values>
   </Container>
 );

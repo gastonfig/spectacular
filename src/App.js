@@ -12,6 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      isEntryOpen: false,
       timelineData: timelineData,
       times: []
     };
@@ -19,6 +20,7 @@ class App extends Component {
     this.addLayer = this.addLayer.bind(this);
     this.getTimes = this.getTimes.bind(this);
     this.removeLayer = this.removeLayer.bind(this);
+    this.toggleEntry = this.toggleEntry.bind(this);
   }
 
   componentWillMount() {
@@ -28,10 +30,14 @@ class App extends Component {
   addLayer(newLayer) {
     const { timelineData } = this.state;
     const layers = timelineData.layers;
-    const newLayersObj = {"layers": [...layers, newLayer]};
+    const newLayersObj = { "layers": [...layers, newLayer] };
     const newTimelineData = Object.assign(this.state.timelineData, newLayersObj);
 
     this.setState({timelineData: newTimelineData});
+  }
+
+  toggleEntry() {
+    this.setState({ isEntryOpen: !this.state.isEntryOpen });
   }
 
   // Remove layer
@@ -45,10 +51,6 @@ class App extends Component {
     this.setState({timelineData: newTimelineData});
   }
   
-  // Update layer
-  // uddateLayer({layer}) {
-  //  ...
-  // }
 
   getTimes() {
     const scaleLength = timelineData.totalTime;
@@ -63,15 +65,20 @@ class App extends Component {
   }
 
   render() {
-    const { times, timelineData } = this.state;
+    const { isEntryOpen, times, timelineData } = this.state;
 
     return (
       <div className="App">
-        <Entry addLayer={this.addLayer}/>        
+        {
+          isEntryOpen &&
+          <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry}/>        
+        }
         <Timeline
           layers={timelineData.layers}
+          isEntryOpen={isEntryOpen}
           removeLayer={this.removeLayer}
           times={times}
+          toggleEntry={this.toggleEntry}
           totalTime={timelineData.totalTime}
         />
         <TimeRuler data={timelineData.totalTime} times={times}/>

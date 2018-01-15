@@ -13,6 +13,7 @@ const Grid = ({times}) => (
 
 const GridStyled = styled.div`
   height: 100%;
+  pointer-events: none;
   position: absolute;
   width: 100%;
   display: flex;
