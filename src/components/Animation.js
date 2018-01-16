@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const Animation = ({animation, delay, name, width}) => (
-  <Container delay={ delay } width={ width }>
+const Animation = ({animation, color, delay, name, width}) => (
+  <Container color={ color } delay={ delay } width={ width }>
     <AnimationName>{name}</AnimationName>
-    <AnimationStyled />
+    <AnimationStyled color={ color }/>
     <Values>
       <span>{ animation.startValue }</span>
       <span>{ animation.endValue }</span>
@@ -22,6 +22,7 @@ const Values = styled.div`
 `;
 
 const Container = styled.div`
+  ${ props => props.color && `color: ${props.color};` }
   position: relative;
   text-align: center;  
   
@@ -39,7 +40,7 @@ const Container = styled.div`
   `;
 
 const AnimationStyled = styled.span`
-  background: #bbb;
+  ${ props => props.color && `background: ${props.color};` }
   display: flex;
   height: 3px;
   position: relative;
@@ -47,7 +48,7 @@ const AnimationStyled = styled.span`
   &:before,
   &:after {
     content: '';
-    background: #222;
+    ${ props => props.color && `background: ${props.color};` }
     border-radius: 50%;
     display: block;
     height: 9px;

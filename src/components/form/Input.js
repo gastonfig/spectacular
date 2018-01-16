@@ -8,17 +8,38 @@ const Input = ({
   value
 }) => (
   <Label>
-    {label}:
-    <input
+    <span>{label}</span>
+    <InputStyled
       name={name}
       type="text"
       value={value}
-      onChange={onChange} />
+      onChange={onChange}
+      placeholder={label}
+    />
   </Label>
 );
 
 const Label = styled.label`
   display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+
+  span {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+  }
+`;
+
+const InputStyled = styled.input`
+  background: none;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 4px;
 `;
 
 export default Input;

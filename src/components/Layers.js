@@ -1,17 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-import Animation from "./Animation"
+import { colors, graphColors } from '../constants/colors';
+
+import Animation from "./Animation";
+import Button from "./form/Button";
+
+import clear from '../svg/clear.svg';
 
 const Layers = ({layers, removeLayer, totalTime}) => (
   layers.map((layer, layerKey) => (
     <Layer key={layerKey}>
-      <Button type="submit" value="Delete" onClick={() => removeLayer(layerKey)}/>
+      <ButtonStyled alt="Remove layer" onClick={() => removeLayer(layerKey)} iconSrc={clear} />
       {
         layer.animations.map((animation, animationKey) => (
           <Animation
             key={animationKey}
             animation={animation}
+            color={graphColors[layerKey]}
             delay={animation.delay / totalTime * 100}
             name={layer.name}
             width={animation.duration / totalTime * 100}
@@ -28,10 +34,10 @@ const Layer = styled.div`
   position: relative;
 `;
 
-const Button = styled.input`
-  font-size: 0.5rem;
-  left: -50px;
+const ButtonStyled = styled(Button)`
+  left: -25px;
   position: absolute;
+  top: 23px;
 `;
 
 export default Layers;
