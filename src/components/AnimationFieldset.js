@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from "styled-components";
 
 import Input from './form/Input';
 
@@ -31,7 +32,7 @@ class AnimationFieldset extends Component {
 
   render() {
     return (
-      <fieldset>
+      <Fieldset>
         <Input
           label="Duration"
           name="duration"
@@ -62,9 +63,17 @@ class AnimationFieldset extends Component {
           value={ this.state.easing }
           onChange={ this.handleInputChange }
         />
-      </fieldset>
+      </Fieldset>
     )
   }
 };
+
+const Fieldset = styled.fieldset`
+  background: #f1f1f1;
+  border: none;
+  margin: 0;
+  padding: 0.75rem;
+  width: 25%;
+`;
 
 export default AnimationFieldset;

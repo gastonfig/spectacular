@@ -22,7 +22,7 @@ const GridStyled = styled.div`
 
 const GridLine = styled.div`
   align-items: center;
-  background: #ddd;
+  background: #e4e4e4;
   display: flex;
   flex-direction: column;
   height: 100%;

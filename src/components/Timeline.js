@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import Layers from "./Layers"
-import Grid from "./Grid"
+import Layers from "./Layers";
+import Grid from "./Grid";
+import Button from "./form/Button";
+
+import add from '../svg/add.svg';
 
 const Timeline = ({
   layers,
@@ -19,7 +22,7 @@ const Timeline = ({
     </TimelineStyled>
     {
       !isEntryOpen &&
-      <Button onClick={toggleEntry}>+</Button>
+      <ButtonStyled alt="Add layer" onClick={ toggleEntry } iconSrc={ add } />
     }
   </Container>
 );
@@ -29,13 +32,11 @@ const Container = styled.div`
 `;
 
 const TimelineStyled = styled.div`
-  background: #f9f9f9;
   padding: 20px 0;
 `;
 
-const Button = styled.button`
-  bottom: 0;
-  left: -30px;
+const ButtonStyled = styled(Button)`
+  left: -25px;
   position: absolute;
 `;
 

@@ -27,7 +27,7 @@ const Number = styled.div`
   width: 1px;
   
   &:before {
-    color: #666;
+    color: #999;
     display: block;
     font-size: 13px;
     margin-top: 10px;

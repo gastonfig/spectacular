@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isEntryOpen: false,
+      isEntryOpen: true,
       timelineData: timelineData,
       times: []
     };
@@ -69,6 +69,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <h1>My App's Motion Specs</h1>
         {
           isEntryOpen &&
           <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry}/>        
