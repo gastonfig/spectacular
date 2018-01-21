@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isEntryOpen: true,
+      isEntryOpen: false,
       timelineData: timelineData,
       times: []
     };
@@ -50,13 +50,13 @@ class App extends Component {
 
     this.setState({timelineData: newTimelineData});
   }
-  
+
 
   getTimes() {
     const scaleLength = timelineData.totalTime;
     const tickLength = 500;
     let times = [];
-  
+
     for (var i = 0; i <= scaleLength; i = i+tickLength) {
       times.push((i.toString()));
     }
@@ -72,7 +72,7 @@ class App extends Component {
         <h1>My App's Motion Specs</h1>
         {
           isEntryOpen &&
-          <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry}/>        
+          <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry}/>
         }
         <Timeline
           layers={timelineData.layers}

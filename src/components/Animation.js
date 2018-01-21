@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 const Animation = ({animation, color, delay, name, width}) => (
   <Container color={ color } delay={ delay } width={ width }>
-    <AnimationName>{name}</AnimationName>
+    <AnimationName color={ color }>{name}</AnimationName>
     <AnimationStyled color={ color }/>
     <Values>
       <span>{ animation.startValue }</span>
+      <span>{ animation.easing }</span>
       <span>{ animation.endValue }</span>
     </Values>
   </Container>
@@ -18,20 +19,26 @@ const Values = styled.div`
   justify-content: space-between;
   margin-left: -3px;
   margin-top: 4px;
+  transition: opacity 300ms ease-in-out;
   width: calc(100% + 6px);
+
+  .layer:hover & {
+    opacity: 0.6;
+  }
 `;
 
 const Container = styled.div`
   ${ props => props.color && `color: ${props.color};` }
+  font-family: 'Roboto Mono';
   position: relative;
-  text-align: center;  
-  
+  text-align: center;
+
   ${props =>
     props.delay && `
     margin-left: ${props.delay}%;
     `
   };
-  
+
   ${props =>
     props.width && `
     width: ${props.width}%;
@@ -44,7 +51,7 @@ const AnimationStyled = styled.span`
   display: flex;
   height: 3px;
   position: relative;
-  
+
   &:before,
   &:after {
     content: '';
@@ -60,13 +67,18 @@ const AnimationStyled = styled.span`
   &:before {
     left: -4px;
   }
+
   &:after {
     right: -4px;
   }
 `
 
 const AnimationName = styled.span`
+  ${ props => props.color && `background: ${props.color};` }
+  color: #fff;
+  display: inline-block;
   font-size: 14px;
+  padding: 8px 10px;
 `;
 
 export default Animation;
