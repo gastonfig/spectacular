@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isEntryOpen: false,
+      isEntryOpen: true,
       timelineData: timelineData,
       times: []
     };
@@ -40,7 +40,6 @@ class App extends Component {
     this.setState({ isEntryOpen: !this.state.isEntryOpen });
   }
 
-  // Remove layer
   removeLayer(layerIndex) {
     const { timelineData } = this.state;
     const newLayers = [...timelineData.layers];
@@ -50,7 +49,6 @@ class App extends Component {
 
     this.setState({timelineData: newTimelineData});
   }
-
 
   getTimes() {
     const scaleLength = timelineData.totalTime;
@@ -70,10 +68,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>My App's Motion Specs</h1>
-        {
-          isEntryOpen &&
-          <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry}/>
-        }
+
         <Timeline
           layers={timelineData.layers}
           isEntryOpen={isEntryOpen}
@@ -82,6 +77,10 @@ class App extends Component {
           toggleEntry={this.toggleEntry}
           totalTime={timelineData.totalTime}
         />
+        {
+          isEntryOpen &&
+          <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry}/>
+        }
         <TimeRuler data={timelineData.totalTime} times={times}/>
       </div>
     );

@@ -22,7 +22,6 @@ const Input = ({
 const Label = styled.label`
   display: block;
   font-size: 14px;
-  margin-bottom: 8px;
 
   span {
     position:absolute;
@@ -39,7 +38,24 @@ const InputStyled = styled.input`
   display: block;
   border: none;
   border-bottom: 1px solid #ddd;
-  padding: 4px;
+  margin-right: 4px;
+  padding: 9px 0;
+  width: 80px;
+  outline: none;
+
+  ${props => props.value === '' && `
+    background: #f5f5f5;
+    border-color: transparent;
+    &:focus {
+      background: none;
+      border-color: #ddd;
+    }
+  `}
+
+  &::placeholder {
+    opacity: 0.45;
+  }
+
 `;
 
 export default Input;

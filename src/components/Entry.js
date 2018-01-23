@@ -5,9 +5,7 @@ import Input from './form/Input';
 import AnimationFieldset from './AnimationFieldset';
 import Button from "./form/Button";
 
-import add from '../svg/add.svg';
-import clear from '../svg/clear.svg';
-import done from '../svg/done.svg';
+import addIcon from '../svg/add.svg';
 
 class Entry extends Component {
   constructor(props) {
@@ -22,11 +20,18 @@ class Entry extends Component {
     this.addAnotherAnimation = this.addAnotherAnimation.bind(this);
     this.handleAddLayer = this.handleAddLayer.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.removeAnimation = this.removeAnimation.bind(this);
   }
 
   addAnimation(animationData, animationIndex = 0) {
     const animations = [...this.state.animations];
     animations[animationIndex] = animationData;
+    this.setState({ animations });
+  }
+
+  removeAnimation(animationIndex) {
+    const animations = [...this.state.animations];
+    animations.splice(animationIndex, 1);
     this.setState({ animations });
   }
 
@@ -51,41 +56,108 @@ class Entry extends Component {
   }
 
   render() {
+    const { animations, name } = this.state;
+    const hasMultipleAnimations = animations.length > 1;
+
     return (
-      <EntryForm>
-        <H2>New Layer</H2>
-        <Input
-          label="Name"
-          name="name"
-          value={this.state.name}
-          onChange={this.handleInputChange}
-        />
-        <H3>Animations</H3>
-        {
-          this.state.animations.map((animation, index) => (
-            <AnimationFieldset addAnimation={this.addAnimation} animationIndex={index} key={index}/>
-          ))
-        } 
-        <Button alt="Add another animation" iconSrc={add} onClick={this.addAnotherAnimation} />
-        
-        <Button alt="Cancel" iconSrc={clear} onClick={this.props.toggleEntry} />
-        <Button alt="Done" iconSrc={done} onClick={this.handleAddLayer} />
-      </EntryForm>
+      <Wrapper>
+        <FormContainer>
+          <H2>Add new Layer</H2>
+
+          <FlexWrapper>
+            <Input
+              label="Name"
+              name="name"
+              value={ name }
+              onChange={ this.handleInputChange }
+            />
+
+            <div>
+              {
+                animations.map((animation, index) => (
+                  <AnimationFieldset
+                    addAnimation={this.addAnimation}
+                    hasMultipleAnimations={ hasMultipleAnimations }
+                    key={ index }
+                    removeAnimation={this.removeAnimation}
+                  />                  
+                ))
+              }
+              <HeaderLabels addIcon={ addIcon } addAnotherAnimation={ this.addAnotherAnimation } />
+            </div>
+
+          </FlexWrapper>
+          
+          <ButtonContainer>
+            <Button alt="Cancel" onClick={this.props.toggleEntry} />
+            <Button alt="Save" onClick={this.handleAddLayer} />
+          </ButtonContainer>
+        </FormContainer>        
+      </Wrapper>
     )
   }
 };
 
-const H2 = styled.h2`
-  margin-top: 0;
-  `;
+const HeaderLabels = ({addIcon, addAnotherAnimation}) => (
+  <HeaderContainer>
+    <HeaderLabel>Duration</HeaderLabel>
+    <HeaderLabel>Delay</HeaderLabel>
+    <HeaderLabel>Start Value</HeaderLabel>
+    <HeaderLabel>End Value</HeaderLabel>
+    <HeaderLabel>Easing</HeaderLabel>
+    <Button alt="Add another animation" iconSrc={addIcon} onClick={addAnotherAnimation} />
+  </HeaderContainer>
+);
 
-const H3 = styled.h3`
-  /* margin-top: 0; */
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: 
 `;
 
-const EntryForm = styled.div`
-  background: #f9f9f9;
-  padding: 2rem;
+const HeaderLabel = styled.span`
+  color: #aaa;
+  font-family: 'Roboto Mono';
+  font-size: 10px;
+  width: 84px;
+`;
+
+const H2 = styled.h2`
+  background: #f2f2f2;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  padding: 10px 0;
+  text-align: center;
+`;
+
+const Wrapper = styled.div`
+  &:before {
+    background: rgba(0, 0, 0, .7);
+    content: '';
+    display: block;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+  }
+`;
+
+const FormContainer = styled.div`
+  background: #fff;
+  position: relative;
+  width: 540px;
+`;
+
+const FlexWrapper = styled.div`
+  display: flex;
+  padding: 0 2%;
+  margin-bottom: 1rem;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 0;
 `;
 
 export default Entry;

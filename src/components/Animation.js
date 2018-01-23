@@ -19,6 +19,7 @@ const Values = styled.div`
   justify-content: space-between;
   margin-left: -3px;
   margin-top: 4px;
+  opacity: 0;
   transition: opacity 300ms ease-in-out;
   width: calc(100% + 6px);
 

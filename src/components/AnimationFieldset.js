@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 
+import Button from "./form/Button";
 import Input from './form/Input';
+
+import clear from '../svg/clear.svg';
 
 class AnimationFieldset extends Component {
   constructor(props) {
@@ -34,46 +37,52 @@ class AnimationFieldset extends Component {
     return (
       <Fieldset>
         <Input
-          label="Duration"
+          label="1000"
           name="duration"
           value={ this.state.duration }
           onChange={ this.handleInputChange }
         />
         <Input
-          label="Delay"
+          label="250"
           name="delay"
           value={ this.state.delay }
           onChange={ this.handleInputChange }
         />
         <Input
-          label="Start value"
+          label="0px"
           name="startValue"
           value={ this.state.startValue }
           onChange={ this.handleInputChange }
         />
         <Input
-          label="End value"
+          label="200px"
           name="endValue"
           value={ this.state.endValue }
           onChange={ this.handleInputChange }
         />
         <Input
-          label="Easing"
+          label="Linear"
           name="easing"
           value={ this.state.easing }
           onChange={ this.handleInputChange }
         />
+
+        { this.props.hasMultipleAnimations &&
+          <Button
+            alt="Cancel"
+            iconSrc={clear}
+            onClick={() => this.props.removeAnimation(this.props.animationIndex)}
+          />
+        }
       </Fieldset>
     )
   }
 };
 
-const Fieldset = styled.fieldset`
-  background: #f1f1f1;
+const Fieldset = styled.div`
   border: none;
+  display: flex;
   margin: 0;
-  padding: 0.75rem;
-  width: 25%;
 `;
 
 export default AnimationFieldset;
