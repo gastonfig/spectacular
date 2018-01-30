@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 
+import { fontFamilies } from '../constants/fonts';
+
 import Input from './form/Input';
 import AnimationFieldset from './AnimationFieldset';
 import Button from "./form/Button";
@@ -115,8 +117,8 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderLabel = styled.span`
+  ${ fontFamilies.robotoMono }
   color: #aaa;
-  font-family: 'Roboto Mono';
   font-size: 10px;
   width: 84px;
 `;

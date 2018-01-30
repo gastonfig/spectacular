@@ -2,12 +2,13 @@ import React from 'react';
 import styled from "styled-components";
 
 const Input = ({
+  className,
   label,
   name,
   onChange,
   value
 }) => (
-  <Label>
+  <Label className={ className }>
     <span>{label}</span>
     <InputStyled
       name={name}

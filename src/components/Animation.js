@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { fontFamilies } from '../constants/fonts';
+
 const Animation = ({animation, color, delay, name, width}) => (
   <Container color={ color } delay={ delay } width={ width }>
     <AnimationName color={ color }>{name}</AnimationName>
@@ -30,7 +32,7 @@ const Values = styled.div`
 
 const Container = styled.div`
   ${ props => props.color && `color: ${props.color};` }
-  font-family: 'Roboto Mono';
+  ${ fontFamilies.robotoMono }
   position: relative;
   text-align: center;
 

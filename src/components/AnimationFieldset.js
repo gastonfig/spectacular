@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Button from "./form/Button";
 import Input from './form/Input';
 
+import { fontFamilies } from '../constants/fonts';
+
 import clear from '../svg/clear.svg';
 
 class AnimationFieldset extends Component {
@@ -36,31 +38,36 @@ class AnimationFieldset extends Component {
   render() {
     return (
       <Fieldset>
-        <Input
+        <InputStyled
+          className='fieldsetInput'
           label="1000"
           name="duration"
           value={ this.state.duration }
           onChange={ this.handleInputChange }
         />
-        <Input
+        <InputStyled
+          className='fieldsetInput'
           label="250"
           name="delay"
           value={ this.state.delay }
           onChange={ this.handleInputChange }
         />
-        <Input
+        <InputStyled
+          className='fieldsetInput'
           label="0px"
           name="startValue"
           value={ this.state.startValue }
           onChange={ this.handleInputChange }
         />
-        <Input
+        <InputStyled
+          className='fieldsetInput'
           label="200px"
           name="endValue"
           value={ this.state.endValue }
           onChange={ this.handleInputChange }
         />
-        <Input
+        <InputStyled
+          className='fieldsetInput'
           label="Linear"
           name="easing"
           value={ this.state.easing }
@@ -84,5 +91,11 @@ const Fieldset = styled.div`
   display: flex;
   margin: 0;
 `;
+
+const InputStyled = styled(Input)`
+  input {
+    ${ fontFamilies.robotoMono }
+  }
+`
 
 export default AnimationFieldset;
