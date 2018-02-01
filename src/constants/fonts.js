@@ -5,5 +5,5 @@ export const fonts = {
 }
 
 export const fontFamilies = {
-  robotoMono: css`font-family: ${ fonts.robotoMono }`
+  robotoMono: css`font-family: ${ fonts.robotoMono };`
 }

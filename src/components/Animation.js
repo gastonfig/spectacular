@@ -1,38 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
+import { CenteredMarker } from './Common';
 import { fontFamilies } from '../constants/fonts';
 
 const Animation = ({animation, color, delay, name, width}) => (
-  <Container color={ color } delay={ delay } width={ width }>
+  <Container className="animation" color={ color } delay={ delay } width={ width }>
     <AnimationName color={ color }>{name}</AnimationName>
     <AnimationStyled color={ color }/>
     <Values>
-      <span>{ animation.startValue }</span>
+      <CenteredValue>{ animation.startValue }</CenteredValue>
       <span>{ animation.easing }</span>
-      <span>{ animation.endValue }</span>
+      <CenteredValue>{ animation.endValue }</CenteredValue>
     </Values>
   </Container>
 );
 
-const Values = styled.div`
-  font-size: 11px;
-  display: flex;
-  justify-content: space-between;
-  margin-left: -3px;
-  margin-top: 4px;
-  opacity: 0;
-  transition: opacity 300ms ease-in-out;
-  width: calc(100% + 6px);
-
-  .layer:hover & {
-    opacity: 0.6;
-  }
-`;
-
 const Container = styled.div`
   ${ props => props.color && `color: ${props.color};` }
   ${ fontFamilies.robotoMono }
+  cursor: default;
   position: relative;
   text-align: center;
 
@@ -82,6 +69,32 @@ const AnimationName = styled.span`
   display: inline-block;
   font-size: 14px;
   padding: 8px 10px;
+`;
+
+const Values = styled.div`
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  margin-left: -3px;
+  margin-top: 4px;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+  width: calc(100% + 6px);
+
+  .animation:hover & {
+    opacity: 0.6;
+  }
+`;
+
+const CenteredValue = styled(CenteredMarker)`
+  position: absolute;
+  &:first-of-type{
+    left: 0;
+  }
+
+  &:last-of-type {
+    right: 0;
+  }
 `;
 
 export default Animation;
