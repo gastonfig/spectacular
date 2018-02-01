@@ -18,6 +18,7 @@ const Button = ({
 const ButtonStyled = styled.button`
   background: none;
   border: none;
+  cursor: pointer;
   font-size: 13px;
   font-weight: 500;
   padding: 0.5rem 1rem;
@@ -25,7 +26,7 @@ const ButtonStyled = styled.button`
   ${ props => props.iconSrc && `
     font-size: 0.5rem;
     padding: 0;
-    
+
     img {
       height: 15px;
       width: 15px;

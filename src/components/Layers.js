@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { transparentize } from 'polished'
 
-import { colors, graphColors } from '../constants/colors';
+import { graphColors } from '../constants/colors';
 
 import Animation from "./Animation";
 import Button from "./form/Button";
@@ -37,7 +37,7 @@ const Layer = styled.div`
   transition: background 150ms ease-in-out;
 
   &:hover {
-    ${ props => props.color && `background: ${transparentize(0.97, props.color)};` }
+    ${ props => props.color && `background: ${transparentize(0.95, props.color)};` }
   }
   `;
 

@@ -67,8 +67,8 @@ const AnimationName = styled.span`
   ${ props => props.color && `background: ${props.color};` }
   color: #fff;
   display: inline-block;
-  font-size: 14px;
-  padding: 8px 10px;
+  font-size: 13px;
+  padding: 6px 8px;
 `;
 
 const Values = styled.div`

@@ -77,11 +77,11 @@ class App extends Component {
           toggleEntry={this.toggleEntry}
           totalTime={timelineData.totalTime}
         />
+        <TimeRuler data={timelineData.totalTime} times={times}/>
         {
           isEntryOpen &&
           <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry}/>
         }
-        <TimeRuler data={timelineData.totalTime} times={times}/>
       </div>
     );
   }

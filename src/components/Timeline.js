@@ -5,7 +5,8 @@ import Layers from "./Layers";
 import Grid from "./Grid";
 import Button from "./form/Button";
 
-import add from '../svg/add.svg';
+import { colors } from '../constants/colors';
+import add from '../svg/add-white.svg';
 
 const Timeline = ({
   layers,
@@ -22,7 +23,7 @@ const Timeline = ({
     </TimelineStyled>
     {
       !isEntryOpen &&
-      <ButtonStyled alt="Add layer" onClick={ toggleEntry } iconSrc={ add } />
+      <AddButton alt="Add layer" onClick={ toggleEntry } iconSrc={ add } />
     }
   </Container>
 );
@@ -35,9 +36,29 @@ const TimelineStyled = styled.div`
   padding: 20px 0;
 `;
 
-const ButtonStyled = styled(Button)`
-  left: -25px;
+const AddButton = styled(Button)`
+  background: ${ colors.RED };
+  border-radius: 50%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  left: -50px;
+  opacity: 0.5;
   position: absolute;
+  transform: translateZ(0);
+  transition: all 250ms ease-in-out;
+  width: 40px;
+
+  img {
+    height: 62.5%;
+    width: 62.5%;
+  }
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.2) translateZ(0);
+  }
 `;
 
 export default Timeline;
