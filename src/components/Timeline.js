@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Layers from "./Layers";
-import Grid from "./Grid";
-import Button from "./form/Button";
+import Layers from './Layers';
+import Grid from './Grid';
+import Button from './form/Button';
 
 import { colors } from '../constants/colors';
 import add from '../svg/add-white.svg';
@@ -17,14 +17,13 @@ const Timeline = ({
   totalTime
 }) => (
   <Container>
-    <Grid times={times}/>
+    <Grid times={times} />
     <TimelineStyled>
-      <Layers layers={layers} removeLayer={removeLayer} totalTime={totalTime}/>
+      <Layers layers={layers} removeLayer={removeLayer} totalTime={totalTime} />
     </TimelineStyled>
-    {
-      !isEntryOpen &&
-      <AddButton alt="Add layer" onClick={ toggleEntry } iconSrc={ add } />
-    }
+    {!isEntryOpen && (
+      <AddButton alt="Add layer" onClick={toggleEntry} iconSrc={add} />
+    )}
   </Container>
 );
 
@@ -37,7 +36,7 @@ const TimelineStyled = styled.div`
 `;
 
 const AddButton = styled(Button)`
-  background: ${ colors.RED };
+  background: ${colors.RED};
   border-radius: 50%;
   top: 0;
   display: flex;

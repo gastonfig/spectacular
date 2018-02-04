@@ -5,7 +5,7 @@ import Entry from './components/Entry';
 import Timeline from './components/Timeline';
 import TimeRuler from './components/TimeRuler';
 
-import {timelineData} from "./data/timeline-mock";
+import { timelineData } from './data/timeline-mock';
 
 class App extends Component {
   constructor(props) {
@@ -30,10 +30,13 @@ class App extends Component {
   addLayer(newLayer) {
     const { timelineData } = this.state;
     const layers = timelineData.layers;
-    const newLayersObj = { "layers": [...layers, newLayer] };
-    const newTimelineData = Object.assign(this.state.timelineData, newLayersObj);
+    const newLayersObj = { layers: [...layers, newLayer] };
+    const newTimelineData = Object.assign(
+      this.state.timelineData,
+      newLayersObj
+    );
 
-    this.setState({timelineData: newTimelineData});
+    this.setState({ timelineData: newTimelineData });
   }
 
   toggleEntry() {
@@ -44,10 +47,13 @@ class App extends Component {
     const { timelineData } = this.state;
     const newLayers = [...timelineData.layers];
     newLayers.splice(layerIndex, 1);
-    const newLayersObj = {"layers": newLayers};
-    const newTimelineData = Object.assign(this.state.timelineData, newLayersObj);
+    const newLayersObj = { layers: newLayers };
+    const newTimelineData = Object.assign(
+      this.state.timelineData,
+      newLayersObj
+    );
 
-    this.setState({timelineData: newTimelineData});
+    this.setState({ timelineData: newTimelineData });
   }
 
   getTimes() {
@@ -55,8 +61,8 @@ class App extends Component {
     const tickLength = 500;
     let times = [];
 
-    for (var i = 0; i <= scaleLength; i = i+tickLength) {
-      times.push((i.toString()));
+    for (var i = 0; i <= scaleLength; i = i + tickLength) {
+      times.push(i.toString());
     }
 
     this.setState({ times });
@@ -77,11 +83,10 @@ class App extends Component {
           toggleEntry={this.toggleEntry}
           totalTime={timelineData.totalTime}
         />
-        <TimeRuler data={timelineData.totalTime} times={times}/>
-        {
-          isEntryOpen &&
-          <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry}/>
-        }
+        <TimeRuler data={timelineData.totalTime} times={times} />
+        {isEntryOpen && (
+          <Entry addLayer={this.addLayer} toggleEntry={this.toggleEntry} />
+        )}
       </div>
     );
   }

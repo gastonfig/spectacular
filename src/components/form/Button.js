@@ -1,17 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-const Button = ({
-  alt = "",
-  className,
-  iconSrc,
-  onClick,
-}) => (
-  <ButtonStyled className={ className } iconSrc={ iconSrc } onClick={ onClick }>
-    { iconSrc ?
-      <img src={ iconSrc } alt={ alt }/>
-      : alt
-    }
+const Button = ({ alt = '', className, iconSrc, onClick }) => (
+  <ButtonStyled className={className} iconSrc={iconSrc} onClick={onClick}>
+    {iconSrc ? <img src={iconSrc} alt={alt} /> : alt}
   </ButtonStyled>
 );
 
@@ -23,7 +15,9 @@ const ButtonStyled = styled.button`
   font-weight: 500;
   padding: 0.5rem 1rem;
 
-  ${ props => props.iconSrc && `
+  ${props =>
+    props.iconSrc &&
+    `
     font-size: 0.5rem;
     padding: 0;
 
@@ -31,7 +25,7 @@ const ButtonStyled = styled.button`
       height: 15px;
       width: 15px;
     }
-  `}
+  `};
 `;
 
 export default Button;

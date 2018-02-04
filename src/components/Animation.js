@@ -1,52 +1,50 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 import { CenteredMarker } from './Common';
 import { fontFamilies } from '../constants/fonts';
 
-const Animation = ({animation, color, delay, name, width}) => (
-  <Container className="animation" color={ color } delay={ delay } width={ width }>
-    <AnimationName color={ color }>{name}</AnimationName>
-    <AnimationStyled color={ color }/>
+const Animation = ({ animation, color, delay, name, width }) => (
+  <Container className="animation" color={color} delay={delay} width={width}>
+    <AnimationName color={color}>{name}</AnimationName>
+    <AnimationStyled color={color} />
     <Values>
-      <CenteredValue>{ animation.startValue }</CenteredValue>
-      <span>{ animation.easing }</span>
-      <CenteredValue>{ animation.endValue }</CenteredValue>
+      <CenteredValue>{animation.startValue}</CenteredValue>
+      <span>{animation.easing}</span>
+      <CenteredValue>{animation.endValue}</CenteredValue>
     </Values>
   </Container>
 );
 
 const Container = styled.div`
-  ${ props => props.color && `color: ${props.color};` }
-  ${ fontFamilies.robotoMono }
-  cursor: default;
+  ${props =>
+    props.color &&
+    `color: ${props.color};`} ${fontFamilies.robotoMono} cursor: default;
   position: relative;
   text-align: center;
 
   ${props =>
-    props.delay && `
-    margin-left: ${props.delay}%;
+    props.delay &&
     `
-  };
+    margin-left: ${props.delay}%;
+    `};
 
   ${props =>
-    props.width && `
-    width: ${props.width}%;
+    props.width &&
     `
-  };
-  `;
+      width: ${props.width}%;
+    `};
+`;
 
 const AnimationStyled = styled.span`
-  ${ props => props.color && `background: ${props.color};` }
-  display: flex;
+  ${props => props.color && `background: ${props.color};`} display: flex;
   height: 3px;
   position: relative;
 
   &:before,
   &:after {
     content: '';
-    ${ props => props.color && `background: ${props.color};` }
-    border-radius: 50%;
+    ${props => props.color && `background: ${props.color};`} border-radius: 50%;
     display: block;
     height: 9px;
     position: absolute;
@@ -61,11 +59,10 @@ const AnimationStyled = styled.span`
   &:after {
     right: -4px;
   }
-`
+`;
 
 const AnimationName = styled.span`
-  ${ props => props.color && `background: ${props.color};` }
-  color: #fff;
+  ${props => props.color && `background: ${props.color};`} color: #fff;
   display: inline-block;
   font-size: 13px;
   padding: 6px 8px;
@@ -88,7 +85,7 @@ const Values = styled.div`
 
 const CenteredValue = styled(CenteredMarker)`
   position: absolute;
-  &:first-of-type{
+  &:first-of-type {
     left: 0;
   }
 

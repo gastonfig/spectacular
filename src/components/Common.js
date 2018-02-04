@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export const CenteredMarker = styled.span`
   align-items: center;
@@ -14,9 +14,9 @@ export const CenteredMarker = styled.span`
     font-size: 13px;
     margin-top: 10px;
     ${props =>
-      props.text && `
-        content: '${props.text}';
+      props.text &&
       `
-    };
+        content: '${props.text}';
+      `};
   }
 `;

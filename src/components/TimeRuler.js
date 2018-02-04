@@ -1,18 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 import { CenteredMarker } from './Common';
 
-const TimeRuler = ({times}) => {
+const TimeRuler = ({ times }) => {
   return (
     <Container>
-      {
-        times.map((time, key) => (
-          <CenteredMarker key={key} text={time}></CenteredMarker>
-        ))
-      }
+      {times.map((time, key) => <CenteredMarker key={key} text={time} />)}
     </Container>
-  )
+  );
 };
 
 const Container = styled.div`

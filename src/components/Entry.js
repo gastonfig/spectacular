@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 import { fontFamilies } from '../constants/fonts';
 
 import Input from './form/Input';
 import AnimationFieldset from './AnimationFieldset';
-import Button from "./form/Button";
+import Button from './form/Button';
 
 import addIcon from '../svg/add.svg';
 
@@ -15,8 +15,8 @@ class Entry extends Component {
 
     this.state = {
       name: '',
-      animations: [{}],
-    }
+      animations: [{}]
+    };
 
     this.addAnimation = this.addAnimation.bind(this);
     this.addAnotherAnimation = this.addAnotherAnimation.bind(this);
@@ -70,55 +70,58 @@ class Entry extends Component {
             <Input
               label="Name"
               name="name"
-              value={ name }
-              onChange={ this.handleInputChange }
+              value={name}
+              onChange={this.handleInputChange}
             />
 
             <div>
-              {
-                animations.map((animation, index) => (
-                  <AnimationFieldset
-                    addAnimation={this.addAnimation}
-                    hasMultipleAnimations={ hasMultipleAnimations }
-                    key={ index }
-                    removeAnimation={this.removeAnimation}
-                  />                  
-                ))
-              }
-              <HeaderLabels addIcon={ addIcon } addAnotherAnimation={ this.addAnotherAnimation } />
+              {animations.map((animation, index) => (
+                <AnimationFieldset
+                  addAnimation={this.addAnimation}
+                  hasMultipleAnimations={hasMultipleAnimations}
+                  key={index}
+                  removeAnimation={this.removeAnimation}
+                />
+              ))}
+              <HeaderLabels
+                addIcon={addIcon}
+                addAnotherAnimation={this.addAnotherAnimation}
+              />
             </div>
-
           </FlexWrapper>
-          
+
           <ButtonContainer>
             <Button alt="Cancel" onClick={this.props.toggleEntry} />
             <Button alt="Save" onClick={this.handleAddLayer} />
           </ButtonContainer>
-        </FormContainer>        
+        </FormContainer>
       </Wrapper>
-    )
+    );
   }
-};
+}
 
-const HeaderLabels = ({addIcon, addAnotherAnimation}) => (
+const HeaderLabels = ({ addIcon, addAnotherAnimation }) => (
   <HeaderContainer>
     <HeaderLabel>Duration</HeaderLabel>
     <HeaderLabel>Delay</HeaderLabel>
     <HeaderLabel>Start Value</HeaderLabel>
     <HeaderLabel>End Value</HeaderLabel>
     <HeaderLabel>Easing</HeaderLabel>
-    <Button alt="Add another animation" iconSrc={addIcon} onClick={addAnotherAnimation} />
+    <Button
+      alt="Add another animation"
+      iconSrc={addIcon}
+      onClick={addAnotherAnimation}
+    />
   </HeaderContainer>
 );
 
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: 
+  justify-content: ;
 `;
 
 const HeaderLabel = styled.span`
-  ${ fontFamilies.robotoMono }
-  color: #aaa;
+  ${fontFamilies.robotoMono} color: #aaa;
   font-size: 10px;
   width: 84px;
 `;
@@ -133,7 +136,7 @@ const H2 = styled.h2`
 
 const Wrapper = styled.div`
   &:before {
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, 0.7);
     content: '';
     display: block;
     height: 100vh;
