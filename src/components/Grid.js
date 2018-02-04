@@ -1,13 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-const Grid = ({times}) => (
+const Grid = ({ times }) => (
   <GridStyled>
-    {
-      times.map((time, key) => (
-        <GridLine key={key} time={time}></GridLine>
-      ))
-    }
+    {times.map((time, key) => <GridLine key={key} time={time} />)}
   </GridStyled>
 );
 

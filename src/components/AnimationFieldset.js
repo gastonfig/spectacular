@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Button from "./form/Button";
+import Button from './form/Button';
 import Input from './form/Input';
 
 import { fontFamilies } from '../constants/fonts';
@@ -18,7 +18,7 @@ class AnimationFieldset extends Component {
       startValue: '',
       endValue: '',
       easing: ''
-    }
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -39,52 +39,54 @@ class AnimationFieldset extends Component {
     return (
       <Fieldset>
         <InputStyled
-          className='fieldsetInput'
+          className="fieldsetInput"
           label="1000"
           name="duration"
-          value={ this.state.duration }
-          onChange={ this.handleInputChange }
+          value={this.state.duration}
+          onChange={this.handleInputChange}
         />
         <InputStyled
-          className='fieldsetInput'
+          className="fieldsetInput"
           label="250"
           name="delay"
-          value={ this.state.delay }
-          onChange={ this.handleInputChange }
+          value={this.state.delay}
+          onChange={this.handleInputChange}
         />
         <InputStyled
-          className='fieldsetInput'
+          className="fieldsetInput"
           label="0px"
           name="startValue"
-          value={ this.state.startValue }
-          onChange={ this.handleInputChange }
+          value={this.state.startValue}
+          onChange={this.handleInputChange}
         />
         <InputStyled
-          className='fieldsetInput'
+          className="fieldsetInput"
           label="200px"
           name="endValue"
-          value={ this.state.endValue }
-          onChange={ this.handleInputChange }
+          value={this.state.endValue}
+          onChange={this.handleInputChange}
         />
         <InputStyled
-          className='fieldsetInput'
+          className="fieldsetInput"
           label="Linear"
           name="easing"
-          value={ this.state.easing }
-          onChange={ this.handleInputChange }
+          value={this.state.easing}
+          onChange={this.handleInputChange}
         />
 
-        { this.props.hasMultipleAnimations &&
+        {this.props.hasMultipleAnimations && (
           <Button
             alt="Cancel"
             iconSrc={clear}
-            onClick={() => this.props.removeAnimation(this.props.animationIndex)}
+            onClick={() =>
+              this.props.removeAnimation(this.props.animationIndex)
+            }
           />
-        }
+        )}
       </Fieldset>
-    )
+    );
   }
-};
+}
 
 const Fieldset = styled.div`
   border: none;
@@ -94,8 +96,8 @@ const Fieldset = styled.div`
 
 const InputStyled = styled(Input)`
   input {
-    ${ fontFamilies.robotoMono }
+    ${fontFamilies.robotoMono};
   }
-`
+`;
 
 export default AnimationFieldset;

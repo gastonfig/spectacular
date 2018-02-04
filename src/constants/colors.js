@@ -9,7 +9,7 @@ export const colors = {
   YELLOW: '#fdd835',
   AMBER: '#ffb300',
   ORANGE: '#fb8c00',
-  DEP_ORANGE: '#f4511e',
+  DEP_ORANGE: '#f4511e'
 };
 
 export const graphColors = [
@@ -23,5 +23,5 @@ export const graphColors = [
   colors.GREEN,
   colors.LIME,
   colors.AMBER,
-  colors.ORANGE,
-]
+  colors.ORANGE
+];
